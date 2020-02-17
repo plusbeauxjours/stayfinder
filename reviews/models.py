@@ -4,7 +4,7 @@ from core import models as core_models
 
 class Review(core_models.TimeStampedModel):
 
-    """Review Model Definitino"""
+    """Review Model Definition"""
 
     review = models.TextField()
     accuracy = models.IntegerField()
