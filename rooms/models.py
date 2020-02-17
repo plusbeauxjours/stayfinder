@@ -23,15 +23,13 @@ class RoomType(AbstractItem):
     def __str__(self):
         return self.name
 
-    pass
-
 
 class Amenity(AbstractItem):
 
     """Amenity Model Definition"""
 
     class Meta:
-        verbose_name = "Amenities"
+        verbose_name_plural = "Amenities"
 
     def __str__(self):
         return self.name
@@ -42,7 +40,7 @@ class Facility(AbstractItem):
     """Facility Model Definition"""
 
     class Meta:
-        verbose_name = "Facilities"
+        verbose_name_plural = "Facilities"
 
     def __str__(self):
         return self.name
@@ -51,6 +49,9 @@ class Facility(AbstractItem):
 class HouseRule(AbstractItem):
 
     """HouseRule Model Definition"""
+
+    class Meta:
+        verbose_name = "House Rule"
 
     def __str__(self):
         return self.name
