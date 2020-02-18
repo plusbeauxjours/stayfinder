@@ -96,7 +96,7 @@ class Room(core_models.TimeStampedModel):
     facilities = models.ManyToManyField("Facility", related_name="rooms")
     house_rules = models.ManyToManyField("HouseRule", related_name="rooms")
     file = models.ImageField(upload_to="room_photos")
-    
+
     def __str__(self):
         return self.name
 
@@ -107,6 +107,10 @@ class Room(core_models.TimeStampedModel):
     @property
     def count_photos(self):
         return self.photos.all().count()
+
+    def save(self, *args, **kwargs):
+        self.city = str.capitalize(self.city)
+        super().save(*args, **kwargs)
 
     def total_rating(self):
         all_reviews = self.reviews.all()
