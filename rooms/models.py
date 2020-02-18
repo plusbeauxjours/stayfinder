@@ -95,7 +95,8 @@ class Room(core_models.TimeStampedModel):
     amenities = models.ManyToManyField("Amenity", related_name="rooms")
     facilities = models.ManyToManyField("Facility", related_name="rooms")
     house_rules = models.ManyToManyField("HouseRule", related_name="rooms")
-
+    file = models.ImageField(upload_to="room_photos")
+    
     def __str__(self):
         return self.name
 
