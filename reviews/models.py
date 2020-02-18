@@ -27,6 +27,7 @@ class Review(core_models.TimeStampedModel):
         avg = (
             self.accuracy
             + self.communication
+            + self.cleanliness
             + self.location
             + self.check_in
             + self.value
