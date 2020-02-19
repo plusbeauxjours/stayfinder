@@ -1,15 +1,15 @@
 from django.core.management.base import BaseCommand
 from django_seed import Seed
-from rooms.models import User
+from users.models import User
 
 
 class Command(BaseCommand):
 
-    help = "This command creates many users"
+    help = "This command creates amenities"
 
-    def add_argumnets(self, parser):
+    def add_arguments(self, parser):
         parser.add_argument(
-            "--number", default=2, type=int, help="How many users do you want to create"
+            "--number", default=2, type=int, help="How many users you want to create"
         )
 
     def handle(self, *args, **options):
