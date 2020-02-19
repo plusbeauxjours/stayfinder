@@ -5,14 +5,16 @@ from django_seed import Seed
 from rooms import models as room_models
 from users import models as user_models
 
+NAME = "rooms"
+
 
 class Command(BaseCommand):
 
-    help = "This command creates rooms"
+    help = f"This commend creates {NAME}"
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--number", default=2, type=int, help="How many rooms you want to create"
+            "--number", default=2, type=int, help="How many {NAME} you want to create"
         )
 
     def handle(self, *args, **options):
@@ -59,4 +61,4 @@ class Command(BaseCommand):
             magic_number = random.randint(0, 15)
             if magic_number % 2 == 0:
                 room.rules.add(r)
-        self.stdout.write(self.style.SUCCESS(f"{number} Rooms created"))
+        self.stdout.write(self.style.SUCCESS(f"{number} {NAME} created"))

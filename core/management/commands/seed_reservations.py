@@ -1,12 +1,12 @@
 import random
+from datetime import datetime, timedelta
 from django.core.management.base import BaseCommand
-from django.contrib.admin.utils import flatten
 from django_seed import Seed
+from reservations import models as reservation_models
 from rooms import models as room_models
 from users import models as user_models
-from reviews import models as review_models
 
-NAME = "reviews"
+NAME = "reservations"
 
 
 class Command(BaseCommand):
@@ -15,7 +15,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "--number", default=2, type=int, help="How many {NAME} you want to create"
+            "--number", default=2, type=int, help=f"How many {NAME} you want to craete"
         )
 
     def handle(self, *args, **options):
@@ -24,17 +24,15 @@ class Command(BaseCommand):
         all_users = user_models.User.objects.all()
         all_rooms = room_models.Room.objects.all()
         seeder.add_entity(
-            review_models.Review,
+            reservation_models.Reservation,
             number,
             {
-                "accuracy": lambda x: random.randint(0, 6),
-                "communication": lambda x: random.randint(0, 6),
-                "cleanliness": lambda x: random.randint(0, 6),
-                "location": lambda x: random.randint(0, 6),
-                "check_in": lambda x: random.randint(0, 6),
-                "value": lambda x: random.randint(0, 6),
-                "user": lambda x: random.choice(all_users),
+                "status": lambda x: random.choice(["pending", "confirmed", "canceled"]),
+                "guest": lambda x: random.choice(all_users),
                 "room": lambda x: random.choice(all_rooms),
+                "check_in": lambda x: datetime.now(),
+                "check_out": lambda x: datetime.now()
+                + timedelta(days=random.randint(3, 25)),
             },
         )
         seeder.execute()
