@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 
-{% block page_name %}
-Home
-{% endblock page_name %}
+{% block page_title %}
+{{room.name}}
+{% endblock page_title %}
 
 {% block content %}
 <div>
@@ -12,27 +12,27 @@ Home
 </div>
 <div>
     <h2>By: {{room.host.username}}
-    {% if room.host.superhost %}
+        {% if room.host.superhost %}
         (superhost)
-    {% endif %}
+        {% endif %}
     </h2>
     <h3>Amenities</h3>
     <ul>
-    {% for a in room.amenities.all  %}
+        {% for a in room.amenities.all  %}
         <li>{{a}}</li>
-    {% endfor %}
+        {% endfor %}
     </ul>
     <h3>Facilities</h3>
     <ul>
-    {% for a in room.facilities.all  %}
+        {% for a in room.facilities.all  %}
         <li>{{a}}</li>
-    {% endfor %}
+        {% endfor %}
     </ul>
     <h3>House Rules</h3>
     <ul>
-    {% for a in room.house_rules.all  %}
+        {% for a in room.house_rules.all  %}
         <li>{{a}}</li>
-    {% endfor %}
+        {% endfor %}
     </ul>
 </div>
 {% endblock %}
