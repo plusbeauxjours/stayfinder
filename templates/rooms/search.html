@@ -13,6 +13,7 @@ Search
 
 <form method="get" action="{% url "rooms:search" %}">
     {{form.as_p}}
+    <button>Search</button>
 </form>
 
 <h3>Results</h3>
@@ -21,6 +22,16 @@ Search
 <h3>{{room.name}}</h3>
 {% endfor %}
 
+<h5>
+    {% if rooms.has_previous %}
+    <a href="?page={{rooms.previous_page_number}}">Previous</a>
+    {% endif %}
 
+    Page {{rooms.number}} of {{rooms.paginator.num_pages}}
+
+    {% if rooms.has_next  %}
+    <a href="?page={{page_obj.next_page_number}}">Next</a>
+    {% endif %}
+</h5>
 
 {% endblock content %}
