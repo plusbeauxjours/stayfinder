@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 .search-box {
     transition: box-shadow 0.2s linear;
@@ -45,44 +44,19 @@ select {
     height: 50px;
 }
 
-
 form {
-    input {
-        .input {
-            @apply mb-3 w-full;
+    .input {
+        @apply mb-3 w-full;
 
-            &.has_error {
-                input {
-                    @apply bg-red-200 border-gray-600;
+        &.has_error {
+            input {
+                @apply bg-red-200 border-gray-600;
 
-                    &:focus {
-                        @apply border-gray-600;
-                    }
+                &:focus {
+                    @apply border-gray-600;
                 }
             }
         }
-    }
-}
-
-@keyframes messageFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-
-    5% {
-        opacity: 1;
-        transform: translateY(50px);
-    }
-
-    95% {
-        opacity: 1;
-        transform: translateY(50px);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateY(-50px);
     }
 }
 
@@ -127,3 +101,5 @@ form {
         @apply bg-yellow-400;
     }
 }
+
+@tailwind utilities;
