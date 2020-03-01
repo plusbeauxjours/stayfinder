@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load is_booked %}
 
 {% block page_title %}
@@ -113,10 +112,6 @@
                 {% else %}
                 <a href="{% url 'reservations:create' room.pk day.year day.month day.number %}"
                     class="cal-number bg-gray-200 text-gray-700 hover:bg-teal-400 hover:text-white hover:font-medium">{{day}}</a>
-                {% endif %}
-                {% else %}
-                <span></span>
-
                 {% endif %}
                 {% else %}
                 <span></span>
