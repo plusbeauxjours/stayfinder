@@ -145,3 +145,8 @@ EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_PASSWORD")
 EMAIL_FROM = "no-reply@airbnp.fun"
 
 LOGIN_URL = "/users/login/"
+
+
+# Locale
+
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
