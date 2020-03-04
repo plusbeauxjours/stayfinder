@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-04 11:38+0900\n"
+"POT-Creation-Date: 2019-11-19 17:46+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/base.html:26
+#: templates/base.html:24
 msgid "Search By City"
 msgstr "Buscar por Ciudad"
 
@@ -30,27 +30,60 @@ msgstr "Por favor no nos copies."
 msgid "All rights reserved"
 msgstr "Todos los derechos reservados"
 
-#: users/mixins.py:13 users/mixins.py:22
+#: templates/partials/nav.html:6
+msgid "Stop hosting"
+msgstr "Cambiar a Invitado"
+
+#: templates/partials/nav.html:8
+msgid "Start hosting"
+msgstr "Cambiar a Host"
+
+#: templates/partials/nav.html:13
+msgid "Create Room"
+msgstr "Crear Habitación"
+
+#: templates/partials/nav.html:15
+msgid "Profile"
+msgstr "Perfil"
+
+#: templates/partials/nav.html:16
+msgid "Log out"
+msgstr "Cerrar Sesión"
+
+#: templates/partials/nav.html:18
+msgid "Log in"
+msgstr "Iniciar Sesión"
+
+#: templates/partials/nav.html:19
+msgid "Sign up"
+msgstr ""
+
+#: templates/rooms/room_list.html:26
+#, python-format
+msgid "Page %(current_page)s of %(total_pages)s"
+msgstr "Página %(current_page)s de %(total_pages)s"
+
+#: users/mixins.py:13
 msgid "Can't go there"
 msgstr "No puedes ir ahí"
 
-#: users/models.py:27
+#: users/models.py:21
 msgid "Male"
 msgstr "Hombre"
 
-#: users/models.py:28
+#: users/models.py:22
 msgid "Female"
 msgstr "Mujer"
 
-#: users/models.py:29
+#: users/models.py:23
 msgid "Other"
 msgstr "Otro"
 
-#: users/models.py:33
+#: users/models.py:30
 msgid "English"
 msgstr "Inglés"
 
-#: users/models.py:34
+#: users/models.py:31
 msgid "Korean"
 msgstr "Coreano"
 
@@ -69,6 +102,3 @@ msgstr "lenguage"
 #: users/models.py:83
 msgid "Verify Airbnb Account"
 msgstr "Verificar Cuenta de Airbnb"
-
-#~ msgid "Page %(current_page)s of %(total_pages)s"
-#~ msgstr "Página %(current_page)s de %(total_pages)s"
