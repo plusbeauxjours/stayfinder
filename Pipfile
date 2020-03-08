@@ -17,6 +17,7 @@ requests = "*"
 gunicorn = "*"
 whitenoise = "*"
 dj-database-url = "*"
+environ = "*"
 
 [requires]
 python_version = "3.7"
