@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 flake8 = "*"
 black = "*"
+autopep8 = "*"
 
 [packages]
 django = "*"
@@ -14,10 +15,6 @@ django-countries = "*"
 django-seed = "*"
 django-dotenv = "*"
 requests = "*"
-gunicorn = "*"
-whitenoise = "*"
-dj-database-url = "*"
-psycopg2 = "*"
 awsebcli = "*"
 pipenv-to-requirements = "*"
 
