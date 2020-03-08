@@ -17,7 +17,6 @@ requests = "*"
 gunicorn = "*"
 whitenoise = "*"
 dj-database-url = "*"
-environ = "*"
 psycopg2 = "*"
 
 [requires]
