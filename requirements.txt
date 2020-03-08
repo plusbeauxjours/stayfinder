@@ -12,6 +12,7 @@ faker==4.0.1
 gunicorn==20.0.4
 idna==2.9
 pillow==7.0.0
+psycopg2==2.8.4
 python-dateutil==2.8.1
 pytz==2019.3
 requests==2.23.0

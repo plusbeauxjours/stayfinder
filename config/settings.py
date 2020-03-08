@@ -30,8 +30,6 @@ SECRET_KEY = "dno+b(l5jepl#r(oz+x*49y4uyvj-wl)-23eixo#dma46h(_$m"
 DEBUG = bool(env("DEBUG"))
 
 ALLOWED_HOSTS = ["*"]
-db_from_env = dj_database_url.config(conn_max_age=500)
-
 
 # Application definition
 
@@ -95,11 +93,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
-    "default": env.db("DATABASE_URL", default="postgres:///pinner"),
+    'default': env.db('DATABASE_URL', default='postgres:///airbnp'),
 }
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES["default"].update(db_from_env)
 
 
 # Password validation
