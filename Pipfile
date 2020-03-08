@@ -14,9 +14,9 @@ django-countries = "*"
 django-seed = "*"
 django-dotenv = "*"
 requests = "*"
-awsebcli = "*"
-pipenv-to-requirements = "*"
 sentry-sdk = "==0.13.2"
+django-storages = "*"
+boto3 = "==1.10.26"
 
 [requires]
 python_version = "3.7"
