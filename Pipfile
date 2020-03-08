@@ -19,6 +19,7 @@ whitenoise = "*"
 dj-database-url = "*"
 psycopg2 = "*"
 awsebcli = "*"
+pipenv-to-requirements = "*"
 
 [requires]
 python_version = "3.7"
