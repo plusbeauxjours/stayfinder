@@ -26,12 +26,11 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         model = models.User
         fields = ("first_name", "last_name", "email")
-
-    widgets = {
-        "first_name": forms.TextInput(attrs={"placeholder": "First Name"}),
-        "last_name": forms.TextInput(attrs={"placeholder": "Last Name"}),
-        "email": forms.EmailInput(attrs={"placeholder": "Email Name"}),
-    }
+        widgets = {
+            "first_name": forms.TextInput(attrs={"placeholder": "First Name"}),
+            "last_name": forms.TextInput(attrs={"placeholder": "Last Name"}),
+            "email": forms.EmailInput(attrs={"placeholder": "Email Name"}),
+        }
 
     password = forms.CharField(
         widget=forms.PasswordInput(attrs={"placeholder": "Password"})
