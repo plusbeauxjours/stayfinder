@@ -208,11 +208,11 @@ def kakao_callback(request):
 
 def facebook_login(request):
     client_id = os.environ.get("FACEBOOK_ID")
+    client_secret = os.environ.get("FACEBOOK_SECRET")
     redirect_uri = "https://airbnp.eba-8dydnzzj.ap-northeast-2.elasticbeanstalk.com/users/login/facebook/callback"
-    state = "{st=state123abc,ds=123456789}"
     response_type = "code"
     return redirect(
-        f"https://www.facebook.com/v6.0/dialog/oauth?client_id={client_id}&redirect_uri={redirect_uri}&state={state}&response_type={response_type}",
+        f"https://www.facebook.com/v6.0/dialog/oauth?client_id={client_id}&client_secret={client_secret}&redirect_uri={redirect_uri}&response_type={response_type}",
     )
 
 
@@ -225,11 +225,10 @@ def facebook_callback(request):
         client_id = os.environ.get("FACEBOOK_ID")
         client_secret = os.environ.get("FACEBOOK_SECRET")
         redirect_uri = "https://airbnp.eba-8dydnzzj.ap-northeast-2.elasticbeanstalk.com/users/login/facebook/callback"
-        state = "{st=state123abc,ds=123456789}"
         code = request.GET.get("code", None)
         if code is not None:
             token_request = requests.post(
-                f"https://graph.facebook.com/v6.0/oauth/access_token?client_id={client_id}&redirect_uri={redirect_uri}&client_secret={client_secret}&state={state}&code={code}",
+                f"https://graph.facebook.com/v6.0/oauth/access_token?client_id={client_id}&redirect_uri={redirect_uri}&client_secret={client_secret}&code={code}",
                 headers={"Accept": "application/json"},
             )
             token_json = token_request.json()
