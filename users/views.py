@@ -208,11 +208,10 @@ def kakao_callback(request):
 
 def facebook_login(request):
     client_id = os.environ.get("FACEBOOK_ID")
-    client_secret = os.environ.get("FACEBOOK_SECRET")
     redirect_uri = "https://airbnp.eba-8dydnzzj.ap-northeast-2.elasticbeanstalk.com/users/login/facebook/callback"
     response_type = "code"
     return redirect(
-        f"https://www.facebook.com/v6.0/dialog/oauth?client_id={client_id}&client_secret={client_secret}&redirect_uri={redirect_uri}&response_type={response_type}",
+        f"https://www.facebook.com/v6.0/dialog/oauth?client_id={client_id}&redirect_uri={redirect_uri}&response_type={response_type}",
     )
 
 
