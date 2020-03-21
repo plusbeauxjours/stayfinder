@@ -208,7 +208,7 @@ def kakao_callback(request):
 
 def facebook_login(request):
     client_id = os.environ.get("FACEBOOK_ID")
-    redirect_uri = "http://airbnp-django.shop/users/login/facebook/callback"
+    redirect_uri = "https://airbnp-django.shop/users/login/facebook/callback"
     response_type = "code"
     return redirect(
         f"https://www.facebook.com/v6.0/dialog/oauth?client_id={client_id}&redirect_uri={redirect_uri}&response_type={response_type}",
@@ -223,7 +223,7 @@ def facebook_callback(request):
     try:
         client_id = os.environ.get("FACEBOOK_ID")
         client_secret = os.environ.get("FACEBOOK_SECRET")
-        redirect_uri = "http://airbnp-django.shop/users/login/facebook/callback"
+        redirect_uri = "https://airbnp-django.shop/users/login/facebook/callback"
         code = request.GET.get("code", None)
         if code is not None:
             token_request = requests.post(
