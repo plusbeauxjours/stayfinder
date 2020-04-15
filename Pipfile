@@ -17,11 +17,6 @@ requests = "*"
 sentry-sdk = "==0.13.2"
 django-storages = "*"
 boto3 = "==1.10.26"
-dj-database-url = "*"
-gunicorn = "*"
-whitenoise = "*"
-django-heroku = "*"
-psycopg2 = "*"
 
 [requires]
 python_version = "3.7"
