@@ -17,6 +17,10 @@ requests = "*"
 sentry-sdk = "==0.13.2"
 django-storages = "*"
 boto3 = "==1.10.26"
+install = "*"
+dj-database-url = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.7"

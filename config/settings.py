@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import sentry_sdk
+import dj_database_url
+import django_heroku
 from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -88,27 +90,22 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-if DEBUG:
-
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "airbnp",
+        "USER": "plusbeauxjours",
+        "PASSWORD": "",
+        "HOST": "localhost",
+        "PORT": "",
     }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "HOST": os.environ.get("RDS_HOST"),
-            "NAME": os.environ.get("RDS_NAME"),
-            "USER": os.environ.get("RDS_USER"),
-            "PASSWORD": os.environ.get("RDS_PASSWORD"),
-            "PORT": "5432",
-        }
-    }
+}
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
+
+db_from_env = dj_database_url.config()
+DATABASES["default"].update(db_from_env)
+DATABASES["default"]["CONN_MAX_AGE"] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -163,22 +160,26 @@ LOGIN_URL = "/users/login/"
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
+django_heroku.settings(locals())
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+AWS_QUERYSTRING_AUTH = False
+AWS_STORAGE_BUCKET_NAME = os.environ.get("BUCKETEER_BUCKET_NAME")
+AWS_S3_REGION_NAME = os.environ.get("BUCKETEER_AWS_REGION")
+AWS_ACCESS_KEY_ID = os.environ.get("BUCKETEER_AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("BUCKETEER_AWS_SECRET_ACCESS_KEY")
+AWS_S3_CUSTOM_DOMAIN = "%s.s3.amazonaws.com" % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = "https://%s.s3.amazonaws.com/" % str(AWS_STORAGE_BUCKET_NAME)
+AWS_DEFAULT_ACL = "public-read"
+AWS_S3_OBJECT_PARAMETERS = {
+    "CacheControl": "max-age=86400",
+}
+AWS_LOCATION = "media"
+
 
 # Sentry
 
 if not DEBUG:
-
-    DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
-    STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
-    AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-    AWS_STORAGE_BUCKET_NAME = "airbnp-django-plusbeauxjours"
-    AWS_AUTO_CREATE_BUCKET = True
-    AWS_BUCKET_ACL = "public-read"
-
-    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
-    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
 
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_URL"),
