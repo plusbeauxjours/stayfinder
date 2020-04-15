@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import sentry_sdk
 import dj_database_url
-import django_heroku
 from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -90,22 +89,25 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "airbnp",
-        "USER": "plusbeauxjours",
-        "PASSWORD": "",
-        "HOST": "localhost",
-        "PORT": "",
+
+
+if DEBUG:
+
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
     }
-}
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
+else:
+    DATABASES = {
+        "default": os.environ.get("DATABASE_URL", default="postgres:///airbnp"),
+    }
+    DATABASES["default"]["ATOMIC_REQUESTS"] = True
+    db_from_env = dj_database_url.config()
+    DATABASES["default"].update(db_from_env)
+    DATABASES["default"]["CONN_MAX_AGE"] = 500
 
-
-db_from_env = dj_database_url.config()
-DATABASES["default"].update(db_from_env)
-DATABASES["default"]["CONN_MAX_AGE"] = 500
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -160,7 +162,6 @@ LOGIN_URL = "/users/login/"
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
-django_heroku.settings(locals())
 
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 AWS_QUERYSTRING_AUTH = False
