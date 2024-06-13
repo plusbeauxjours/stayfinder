@@ -1,7 +1,7 @@
 # AIRBNP - WEB
 
 <p align="center" >
-  <img src="https://www.plusbeauxjours.com/static/media/Airbnp_web_video.c8244e4a.gif" >
+  <img src="https://github.com/plusbeauxjours/web-plusbeauxjours/blob/master/src/Images/Web/Airbnp_web/Airbnp_web_video.gif" >
   <br>
 </p>
 
@@ -15,8 +15,4 @@
 
 ### Portfolio Link
 
-> https://www.plusbeauxjours.com/projects/web/airbnp-web
-
-### Site
-
-> https://www.airbnp-django.shop/
+> https://www.plusbeauxjours.info/projects/web/airbnp
